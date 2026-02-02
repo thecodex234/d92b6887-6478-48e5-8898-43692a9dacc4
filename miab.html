@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cryptic</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: #aaa;
+            font-family: "Courier New", monospace;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+            cursor: crosshair;
+        }
+
+        /*crt*/
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.03) 0px,
+                rgba(0, 0, 0, 0.05) 2px,
+                rgba(0, 0, 0, 0.05) 4px
+            );
+            mix-blend-mode: overlay;
+            animation: flicker 0.08s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: .8; }
+        }
+
+        /*shake*/
+        .shake {
+            display: inline-block;
+            animation: shakeAnim 0.12s infinite;
+        }
+
+        @keyframes shakeAnim {
+            0% { transform: translate(0px, 0px); }
+            33% { transform: translate(1px, -1px); }
+            66% { transform: translate(-1px, 1px); }
+            100% { transform: translate(0px, 0px); }
+        }
+
+        #text {
+            white-space: pre-wrap;
+            text-align: center;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="text"></div>
+
+    <script>
+        //message thread
+        const messages = [
+            "This is it. (Any key to progress.)",
+            "I'm going to leak something revealing about someone.",
+            "Do what you want with this information...",
+            "and if you don't care, turn back now.",
+            "And at least return the USB. Someone else will find it, and my goal will still be achieved.",
+            "like please man it cost my allowance",
+            "...",
+            "One of the staff is a █████████.",
+            "Here's my reasoning + evidence.",
+            "I know cause I watch.",
+            "He works with a specific department for a reason.",
+            "In his current years of teaching, he has only worked within this department-",
+            "-and has gone out of his way to avoid being an aid, sub or teacher to get there.",
+            "Once you can guess this department it becomes clearer.",
+            "He will willingly do a job nobody else wants to do.",
+            "That's not it--",
+            "should I also mention a few other things.",
+            "I don't have decisive evidence, but...",
+            "His phone was left unlocked for a day.",
+            "I peered into the veil we call the Facebook DMs.",
+            "Guess what I saw there.",
+            "I don't have decisive evidence...",
+            "But I KNOW what I saw, and I'm telling you that.",
+            "Now, at this point, I can predict what you might be wondering at least these two things;",
+            "'Who is it?' 'Who are you?' 'Why the USB?'",
+            "I won't reveal myself.",
+            "I will, however, drop more hints about our perpetrator.. Expect more.",
+            "And your first hints are here, at the end of the thread.",
+            "RE9OVC4gVEVMTC4gV1JTUy4gT0JSRlhCQlkuCgpJIHB1dCBpdCBpbiBST1QxMyBmb3IgZXh0cmEgc2VjdXJpdHku", //if you're looking in here, you're already smarter than most unless it was a mistake or sm.
+            "AND there's more:",
+            "https://github.com/thecodex234/d92b6887-6478-48e5-8898-43692a9dacc4",
+            "Best to work with the first one...",
+            "browser crashes now.",
+            
+            
+        ];
+
+        function onEnd() {
+            while (true) {
+                window.location.reload()
+            }
+
+        }
+
+        let index = 0;
+        const textBox = document.getElementById("text");
+
+        function showMessage(msg) {
+            textBox.innerHTML = "";
+
+            // wrap each letter in shaking span
+            [...msg].forEach(letter => {
+                const span = document.createElement("span");
+                span.textContent = letter;
+                span.classList.add("shake");
+                textBox.appendChild(span);
+            });
+        }
+
+        function nextMessage() {
+            if (index < messages.length) {
+                showMessage(messages[index]);
+                index++;
+            } else {
+                onEnd();
+            }
+        }
+
+        document.addEventListener("keydown", nextMessage);
+        document.addEventListener("click", nextMessage);
+
+        // start
+        nextMessage();
+    </script>
+
+</body>
+</html>
